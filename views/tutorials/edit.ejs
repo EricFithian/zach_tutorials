@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs',{ pageName :  "Edit Tutorial" }) %>
+
+<body>
+
+    <% user.forEach(function(user){ %>
+        <%- include('user/show', {user: user}); %>
+    <% }); %>
+    <h1>Edit your Tutorial</h1>
+    <form method="POST" action="/tutorials/<%= tutorial._id %>?_method=PUT">
+        <div>
+            <label for="author"> Author: </label>
+            <input id="author" name="author" type="text" value="<%= tutorial.author %>"/>
+        </div>
+        <div>
+            <label for="thumbnail"> Picture URL: </label>
+            <input id="thumbnail" name="thumbnail" type="text" value="<%= tutorial.thumbnail %>" />
+        </div>
+        <div>
+            <label for="title"> Title </label>
+            <input id="title" name="title" type="text" value="<%= tutorial.title %>" />
+        </div>
+        <div>
+            <label for="header"> Header </label>
+            <input id="header" name="header" type="text" value="<%= tutorial.header %>" />
+        </div>
+        <div>
+            <label for="body"> Body </label>
+            <input id="body" name="body" cols="40" 
+            rows="30" value = "<%= tutorial.body %>"
+            style="width:400px; height:200px;"  />
+        </div>
+        <input type="submit" value="Edit Tutorial">
+    </form>
+</body>
+</html>

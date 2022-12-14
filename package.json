@@ -1,0 +1,28 @@
+{
+  "name": "zachs_website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "formidable": "^2.0.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.3.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.18"
+  }
+}

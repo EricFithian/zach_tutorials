@@ -1,0 +1,21 @@
+* {
+    background-color: black;
+    color: white;
+}
+
+.title {
+    color: white;
+}
+
+.homepage {
+    font-size: xx-large;
+    text-align: center;
+    padding-right: 130px;
+    font-weight: 200;
+}
+
+body {
+    background: url("https://i.imgur.com/KPVlevq_d.webp?maxwidth=760&fidelity=grand");
+    background-size: contain;
+    background-position: left;
+}   

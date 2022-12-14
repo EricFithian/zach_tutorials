@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.navbar {
+    background-color: black;
+}
+
+.title {
+    color: white;
+}
+
+.user {
+    padding-right: 25px;
+}

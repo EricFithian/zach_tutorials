@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs',{ pageName :  "Create New Tutorial" }) %>
+
+<body>
+
+    <%- include('../partials/nav.ejs')%>
+    <h1>New Tutorial</h1>
+    <form method="POST" action="/tutorials">
+        <!-- method => POST - attach the data to post body rather than in the url query string(GET request) -->
+        <!-- action => destination for the post req -->
+        <div>
+            <label for="author"> Author: </label>
+            <input id="author" name="author" type="text" />
+        </div>
+        <div>
+            <label for="thumbnail"> Picture URL: </label>
+            <input id="thumbnail" name="thumbnail" type="text" />
+        </div>
+        <div>
+            <label for="title"> Title </label>
+            <input id="title" name="title" type="text" />
+        </div>
+        <div>
+            <label for="header"> Header </label>
+            <input id="header" name="header" type="text" />
+        </div>
+        <div>
+            <label for="body"> Body </label>
+            <input id="body" name="body" cols="40" 
+            rows="30" 
+            style="width:400px; height:200px;"  />
+            <button class="bold">Bold</button>
+        </div>
+        <input type="submit" value="Create New Tutorial">
+    </form>
+    <% for(let i = 0; i < 15; i++) { %>
+        <br/>
+    <% } %>
+</body>
+</html>

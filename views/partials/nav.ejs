@@ -1,0 +1,25 @@
+
+    <nav class="navbar">
+        <% if(user) { %>
+            <div class="user">Welcome <%= user %>! </div>
+            
+        <% } %>
+        <div>
+            <a href="/"> Home </a> 
+            <span> | </span>
+            <a href="/tutorials">All Tutorials</a>
+            <span> | </span>
+            <a href="/tutorials/new">Create New Tutorial</a>
+            <span> | </span>
+            <% if(user) { %>
+                <a href="/signout">Sign out</a>
+            <% } else { %>
+                <a href="/register">Create an Account</a>
+                <span> | </span>
+                <a href="/login">Log in</a>
+            <% } %>
+        </div>
+        <div class="navbar-menu navbar-end">
+            
+        </div>
+    </nav>    
