@@ -79,6 +79,11 @@ router.get('/:id', async (req, res, next) => {
             tutorial: foundTutorial,
             reviews: foundReviews,
         }
+        if(req.session.currentUser) {
+            context.user = req.session.currentUser.username;
+        } else {
+            context.user = undefined;
+        }
         res.render('tutorials/show.ejs', context)
     } catch (error) {
         console.log(error);
