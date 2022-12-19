@@ -1,15 +1,17 @@
 
     <nav class="navbar">
         <% if(user) { %>
-            <div class="user">Welcome <%= user %>! </div>
+            <div class="user">Welcome <%= user.username %>! </div>
             
         <% } %>
         <div>
             <a href="/"> Home </a> 
             <span> | </span>
             <a href="/tutorials">All Tutorials</a>
-            <span> | </span>
-            <a href="/tutorials/new">Create New Tutorial</a>
+            <% if(user) { %>
+                <span> | </span>
+                <a href="/tutorials/new">Create New Tutorial</a>
+            <% } %>
             <span> | </span>
             <% if(user) { %>
                 <a href="/signout">Sign out</a>

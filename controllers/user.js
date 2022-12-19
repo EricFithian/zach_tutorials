@@ -64,7 +64,7 @@ router.post("/login", async function (req, res) {
         // here we have created the key card
         req.session.currentUser = {
             id: foundUser._id,
-            username: foundUser.username,
+            username: foundUser,
         };
 
         console.log(req.session);

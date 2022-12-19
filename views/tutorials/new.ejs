@@ -5,15 +5,11 @@
 
 <body>
 
-    <%- include('../partials/nav.ejs')%>
+    <%- include('../partials/nav.ejs'), { user: user }%>
     <h1>New Tutorial</h1>
     <form method="POST" action="/tutorials">
         <!-- method => POST - attach the data to post body rather than in the url query string(GET request) -->
         <!-- action => destination for the post req -->
-        <div>
-            <label for="author"> Author: </label>
-            <input id="author" name="author" type="text" />
-        </div>
         <div>
             <label for="thumbnail"> Picture URL: </label>
             <input id="thumbnail" name="thumbnail" type="text" />
@@ -21,6 +17,10 @@
         <div>
             <label for="title"> Title </label>
             <input id="title" name="title" type="text" />
+        </div>
+        <div>
+            <label for="link"> Link (Optional) </label>
+            <input id="link" name="link" type="text" />
         </div>
         <div>
             <label for="header"> Header </label>

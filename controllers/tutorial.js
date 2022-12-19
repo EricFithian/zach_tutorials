@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
         if(req.session.currentUser) {
             context = { 
                 tutorials: tutorials,
-                user: req.session.currentUser.username
+                user: req.session.currentUser
             } 
         } else {
             context = {
@@ -32,7 +32,9 @@ router.get('/', async (req, res, next) => {
                 user: undefined
             }
         }
-        console.log(tutorials);
+        // console.log(tutorials);
+        console.log(context);
+        // console.log(tutorials[0].user._id)
         return res.render('tutorials/index.ejs', context);
     } catch (error) {
         console.log(error);
@@ -42,23 +44,19 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('tutorials/new.ejs')
+    
+    const context = {
+        user: req.session.currentUser.username,
+        thisUser: req.session.currentUser
+    }
+    res.render('tutorials/new.ejs', context)
 })
 
-router.post('/', upload.single('image'), async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         console.log(req)
-        const myTutorial = {
-            name: req.body.author,
-            desc: req.body.thumbnail,
-            upload_image: {
-                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-                contentType: 'image/png'
-            },
-            title: req.body.title,
-            header: req.body.header,
-            body: req.body.body,
-        }
+        const myTutorial = req.body
+        myTutorial.user = req.session.currentUser.id
         const createdTutorial = await db.Tutorial.create(myTutorial);
         console.log(`The created product is ${createdTutorial}`)
         res.redirect('/tutorials');
@@ -80,7 +78,7 @@ router.get('/:id', async (req, res, next) => {
             reviews: foundReviews,
         }
         if(req.session.currentUser) {
-            context.user = req.session.currentUser.username;
+            context.user = req.session.currentUser;
         } else {
             context.user = undefined;
         }
@@ -98,6 +96,11 @@ router.get('/:id/edit', async (req, res, next) => {
         console.log(`The found tutorial is ${foundTutorial}`)
         context = {
             tutorial: foundTutorial
+        }
+        if(req.session.currentUser) {
+            context.user = req.session.currentUser;
+        } else {
+            context.user = undefined;
         }
         res.render('tutorials/edit.ejs', context)
     } catch (error) {

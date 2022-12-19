@@ -2,18 +2,20 @@
 <html lang="en">
 <%- include('../partials/head.ejs', { pageName: tutorial.title }) %>
 <body>
-    <%- include('../partials/nav.ejs')%>
+    <%- user ? include('../partials/nav.ejs', {user: user.username}) : include('../partials/nav.ejs', {user: ''}) %>
     <!-- <h1>Show Page</h1> -->
     <!-- product object referenced by oneProduct -->
     <h1><%= tutorial.title %></h1>
     <h3><%= tutorial.header %></h3>
     <img class="show-image" src="<%=tutorial.thumbnail%>" alt="<%=tutorial.title %>"/>
     <p><%= tutorial.body %></p>
+    <% if(user && user.id == tutorial.user._id) { %>
     <hr />
-    <div>
-        <a href="/tutorials/<%= tutorial._id %>/edit">Edit <%= tutorial.title %></a>
-    </div>
+        <div>
+            <a href="/tutorials/<%= tutorial._id %>/edit">Edit <%= tutorial.title %></a>
+        </div>
     <hr />
+    <% } %>
     <section>
         <h2>Product Reviews</h2>
         <% let average = 0 %>

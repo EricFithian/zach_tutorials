@@ -5,9 +5,7 @@
 
 <body>
 
-    <% user.forEach(function(user){ %>
-        <%- include('user/show', {user: user}); %>
-    <% }); %>
+    <%- user ? include('../partials/nav.ejs', {user: user.username}) : include('../partials/nav.ejs', {user: ''}) %>
     <h1>Edit your Tutorial</h1>
     <form method="POST" action="/tutorials/<%= tutorial._id %>?_method=PUT">
         <div>

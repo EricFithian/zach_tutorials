@@ -3,10 +3,6 @@
 const mongoose = require('mongoose');
 
 const tutorialSchema = new mongoose.Schema({
-    author: {
-        type: String,
-        required: [true, 'author cannot be empty :(']
-    },
     thumbnail: {
         type: String,
     },
@@ -24,6 +20,13 @@ const tutorialSchema = new mongoose.Schema({
     body: {
         type: String,
         required: [true, 'body cannot be empty!']
+    },
+    link: {
+        type: String,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
 },
     {
