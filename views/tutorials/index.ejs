@@ -24,10 +24,10 @@
                 <% for(let idx=0; idx < tutorials.length; idx++){ %>
                     <% const tutorial=tutorials[idx] %>
                         <div>
-                            <a href="/tutorials/<%= tutorial._id %>"><h1><%= tutorial.title %></h1></a>
+                            <a href="/tutorials/<%= tutorial._id %>"><h1><%= tutorial.title %></h1>
                             <img class="card-image" src="<%= tutorial.thumbnail %>" alt="<%= tutorial.title %>" />
                             <div class>
-                            <p><%= tutorial.author %></p>
+                            <p><%= tutorial.author %></p></a>
                         <% if(user && user.id == tutorial.user._id) { %>
                                 <form method="POST" action="/tutorials/<%= tutorial._id %>?_method=DELETE">            <!-- "/products/0?_method=DELETE" -->
                                     <input type="submit" value="Delete Tutorial"/>

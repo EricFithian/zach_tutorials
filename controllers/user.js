@@ -111,14 +111,66 @@ router.get("/signout", async (req, res, next) => {
     }
 });
 
-router.get('/users', async(req, res, next) => {
+router.get('/user/:id', async (req, res, next) => {
     try {
-        res.json(await User.find({}))
-    } catch (err) {
-        console.log(err);
-        req.error = err;
+        // console.log(profile);
+        if(!req.session.currentUser) res.redirect('/login');
+        const profile = await User.findById(req.params.id);
+        // console.log(req.session.currentUser.id)
+        if(req.params.id === req.session.currentUser.id) {
+            res.render('users/profile', {profile});
+        } else {
+            res.send(`Stop trying to see other people's profiles! Rude!`)
+        }
+    } catch (error) {
+        console.log(error);
+        req.err = error;
         return next();
     }
 })
+
+router.get('/user/:id/edit', async (req, res, next) => {
+    try {
+        if(!req.session.currentUser) res.redirect('/login');
+        const profile = await User.findById(req.params.id);
+        // console.log(req.session.currentUser.id)
+        if(req.params.id === req.session.currentUser.id) {
+            res.render('users/edit', {
+                profile: profile,
+                user: req.session.currentUser
+            });
+        } else {
+            res.send(`Stop trying to see other people's profiles! Rude!`)
+        }
+    } catch (error) {
+        console.log(error);
+        req.err = error;
+        return next();
+    }
+})
+
+router.put('/users/:id', async (req, res, next) => {
+    try {
+        const salt = await bcrypt.genSalt(12);
+        const hash = await bcrypt.hash(req.body.password, salt);
+        req.body.password = hash;
+        await User.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/user/${req.params.id}`)
+    } catch (error) {
+        console.log(error);
+        req.err = error;
+        return next();
+    }
+})
+
+// router.get('/users', async(req, res, next) => {
+//     try {
+//         res.json(await User.find({}))
+//     } catch (err) {
+//         console.log(err);
+//         req.error = err;
+//         return next();
+//     }
+// })
 
 module.exports = router

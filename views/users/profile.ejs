@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs', { pageName :  "Profile page" }) %>
+    
+<body>
+    <%- include('../partials/nav.ejs', { user : profile }) %>
+    <h1>This is your profile page <%=profile.username%></h1>
+    <h2>Name: <%= profile.firstName %> <%= profile.lastName %></h2>
+    <h2>Email: <%= profile.age %></h2>
+    <img class="profilePage" src=<%=profile.profilePicture%> alt="Profile picture">
+    <br>
+    <a href="/user/<%=profile.id%>/edit">Edit</a>

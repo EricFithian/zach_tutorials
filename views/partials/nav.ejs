@@ -1,19 +1,23 @@
 
     <nav class="navbar">
         <% if(user) { %>
-            <div class="user">Welcome <%= user.username %>! </div>
-            
+            <a href="/user/<%=user._id%>">
+                <div class="user">Welcome <%= user.username %>! </div>
+            </a>
+            <% if(user.profilePicture) { %>
+                <img class="profilePic" src=<%=user.profilePicture%> alt="Profile picture">
+            <% } else { %>
+                <img class="profilePic" src="https://static01.nyt.com/images/2019/02/05/world/05egg/15xp-egg-promo-superJumbo-v2.jpg" alt="egg profile picture">
+            <% } %>
         <% } %>
         <div>
             <a href="/"> Home </a> 
             <span> | </span>
             <a href="/tutorials">All Tutorials</a>
-            <% if(user) { %>
-                <span> | </span>
-                <a href="/tutorials/new">Create New Tutorial</a>
-            <% } %>
             <span> | </span>
             <% if(user) { %>
+                <a href="/tutorials/new">Create New Tutorial</a>
+            <span> | </span>
                 <a href="/signout">Sign out</a>
             <% } else { %>
                 <a href="/register">Create an Account</a>

@@ -14,3 +14,15 @@ body {
 .user {
     padding-right: 25px;
 }
+
+.profilePic {
+    max-width: 6%;
+    max-height: 2%;
+    padding-right: 1%;
+}
+
+.profilePage {
+    max-width: 50%;
+    max-height: 25%;
+    padding: 1%;
+}
